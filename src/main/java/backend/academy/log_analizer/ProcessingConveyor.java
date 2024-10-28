@@ -17,9 +17,9 @@ public class ProcessingConveyor {
         this.logStringParser = logStringParser;
     }
 
-    public void process(String path_string) {
+    public void process(String pathString) {
 
-        Path path = Paths.get(path_string);
+        Path path = Paths.get(pathString);
 
         try (Stream<String> lines = Files.lines(path)) {
             lines.map(logStringParser::parseLogString).forEach(System.out::println);
