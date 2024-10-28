@@ -1,8 +1,6 @@
 package backend.academy.log_analizer;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import jakarta.inject.Inject;
 
 public class LogStringParserImpl implements LogStringParser {
 
@@ -22,6 +20,12 @@ public class LogStringParserImpl implements LogStringParser {
     private static final int HTTP_USER_AGENT_3_INDEX = 13;
     private static final int STRING_LENGTH = 14;
 
+    private final ZoneDateTimeParser zoneDateTimeParser;
+
+    @Inject
+    public LogStringParserImpl(ZoneDateTimeParser zoneDateTimeParser) {
+        this.zoneDateTimeParser = zoneDateTimeParser;
+    }
 
     @Override
     public LogString parseLogString(String logString) {
@@ -36,7 +40,7 @@ public class LogStringParserImpl implements LogStringParser {
                 .remoteAddr(logStringEntities[REMOTE_ADDRESS_INDEX])
                 .remoteHost(logStringEntities[REMOTE_HOST_INDEX])
                 .httpXForwardedFor(logStringEntities[HTTP_X_FORWARDED_FOR_INDEX])
-                .timeLocal(zonedDateTimeParse(
+                .timeLocal(zoneDateTimeParser.zonedDateTimeParse(
                     logStringEntities[TIME_LOCAL_1_INDEX]
                         + " "
                         + logStringEntities[TIME_LOCAL_2_INDEX])
@@ -62,10 +66,5 @@ public class LogStringParserImpl implements LogStringParser {
         } catch (IllegalArgumentException e) {
             return null;
         }
-    }
-
-    private ZonedDateTime zonedDateTimeParse(String logString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
-        return ZonedDateTime.parse(logString.substring(1, logString.length() - 1), formatter);
     }
 }
