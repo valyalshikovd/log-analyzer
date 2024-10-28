@@ -1,5 +1,6 @@
 package backend.academy.log_analizer;
 
+import backend.academy.log_analizer.exception.InvalidLogString;
 import jakarta.inject.Inject;
 
 public class LogStringParserImpl implements LogStringParser {
@@ -16,9 +17,8 @@ public class LogStringParserImpl implements LogStringParser {
     private static final int BODY_BYTES_SENT_INDEX = 9;
     private static final int HTTP_REFERER_INDEX = 10;
     private static final int HTTP_USER_AGENT_1_INDEX = 11;
-    private static final int HTTP_USER_AGENT_2_INDEX = 12;
-    private static final int HTTP_USER_AGENT_3_INDEX = 13;
-    private static final int STRING_LENGTH = 14;
+
+    private static final int STRING_LENGTH = 12;
 
     private final ZoneDateTimeParser zoneDateTimeParser;
 
@@ -31,7 +31,7 @@ public class LogStringParserImpl implements LogStringParser {
     public LogString parseLogString(String logString) {
         try {
             String[] logStringEntities = logString.split(" ");
-            if (logStringEntities.length != STRING_LENGTH) {
+            if (logStringEntities.length < STRING_LENGTH) {
                 throw new IllegalArgumentException("Wrong size of log string");
             }
 
@@ -55,16 +55,20 @@ public class LogStringParserImpl implements LogStringParser {
                 .status(Integer.valueOf(logStringEntities[STATUS_INDEX]))
                 .bodyBytesSent(Integer.valueOf(logStringEntities[BODY_BYTES_SENT_INDEX]))
                 .httpReferer(logStringEntities[HTTP_REFERER_INDEX])
-                .httpUserAgent(
-                    logStringEntities[HTTP_USER_AGENT_1_INDEX]
-                        + " "
-                        + logStringEntities[HTTP_USER_AGENT_2_INDEX]
-                        + " "
-                        + logStringEntities[HTTP_USER_AGENT_3_INDEX]
-                )
+                .httpUserAgent(createHttpUserAgentString(logStringEntities))
                 .build();
-        } catch (IllegalArgumentException e) {
-            return null;
+        } catch (Exception e) {
+            throw new InvalidLogString("Invalid log string");
         }
+    }
+
+    private String createHttpUserAgentString(String[] strings) {
+        StringBuilder httpUserAgentBuilder = new StringBuilder();
+        for (int i = HTTP_USER_AGENT_1_INDEX; i < strings.length; i++) {
+            httpUserAgentBuilder.append(strings[i]);
+            httpUserAgentBuilder.append(" ");
+        }
+        httpUserAgentBuilder.deleteCharAt(httpUserAgentBuilder.length() - 1);
+        return httpUserAgentBuilder.toString();
     }
 }
