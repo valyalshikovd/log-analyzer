@@ -1,8 +1,7 @@
 package log_analizer;
 
 import backend.academy.log_analizer.ZoneDateParserImpl;
-import backend.academy.log_analizer.juice.ObjectFabric;
-import org.instancio.internal.generator.time.ZoneIdGenerator;
+import backend.academy.log_analizer.guice.ObjectFabric;
 import org.junit.jupiter.api.Test;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

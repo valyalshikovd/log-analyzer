@@ -1,5 +1,6 @@
 package backend.academy.log_analizer;
 
+import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 import jakarta.inject.Inject;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,16 +30,19 @@ public class ProcessingConveyor {
             (LogString logString) -> logString.timeLocal().isAfter(now)
         );
 
+        StatisticCollectorComposer collector = new StatisticCollectorComposer();
+
 
         try (Stream<String> lines = Files.lines(path)) {
             lines
                 .map(logStringParser::parseLogString)
                 .filter(chain::checkFilters)
-                .forEach(System.out::println);
+                .forEach(collector::collect);
         } catch (IOException e) {
             return;
         }
-
     }
+
+
 
 }

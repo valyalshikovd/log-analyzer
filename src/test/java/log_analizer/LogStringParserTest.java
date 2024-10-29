@@ -3,7 +3,7 @@ package log_analizer;
 import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.LogStringParserImpl;
 import backend.academy.log_analizer.exception.InvalidLogString;
-import backend.academy.log_analizer.juice.ObjectFabric;
+import backend.academy.log_analizer.guice.ObjectFabric;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
