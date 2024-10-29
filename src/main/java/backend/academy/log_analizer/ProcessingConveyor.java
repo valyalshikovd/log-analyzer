@@ -1,6 +1,7 @@
 package backend.academy.log_analizer;
 
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
+import backend.academy.log_analizer.statisticCollector.collector.CountCollector;
 import jakarta.inject.Inject;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,17 +28,22 @@ public class ProcessingConveyor {
         ZonedDateTime now = ZonedDateTime.now();
 
         chain.addTimeFilter(
-            (LogString logString) -> logString.timeLocal().isAfter(now)
+            (LogString logString) -> logString.timeLocal().isBefore(now)
         );
 
         StatisticCollectorComposer collector = new StatisticCollectorComposer();
 
+        collector.addCollector(
+            new CountCollector("Количество запросов: ")
+        );
 
         try (Stream<String> lines = Files.lines(path)) {
             lines
                 .map(logStringParser::parseLogString)
                 .filter(chain::checkFilters)
                 .forEach(collector::collect);
+
+         //   System.out.println(collector.getStatistics());
         } catch (IOException e) {
             return;
         }
