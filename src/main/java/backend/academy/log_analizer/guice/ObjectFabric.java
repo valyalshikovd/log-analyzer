@@ -1,4 +1,4 @@
-package backend.academy.log_analizer.juice;
+package backend.academy.log_analizer.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
