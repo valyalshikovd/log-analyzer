@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.ZonedDateTime;
 import java.util.stream.Stream;
 
 public class ProcessingConveyor {
@@ -20,9 +21,20 @@ public class ProcessingConveyor {
     public void process(String pathString) {
 
         Path path = Paths.get(pathString);
+        FilterChain chain = new FilterChain();
+
+        ZonedDateTime now = ZonedDateTime.now();
+
+        chain.addTimeFilter(
+            (LogString logString) -> logString.timeLocal().isAfter(now)
+        );
+
 
         try (Stream<String> lines = Files.lines(path)) {
-            lines.map(logStringParser::parseLogString).forEach(System.out::println);
+            lines
+                .map(logStringParser::parseLogString)
+                .filter(chain::checkFilters)
+                .forEach(System.out::println);
         } catch (IOException e) {
             return;
         }
