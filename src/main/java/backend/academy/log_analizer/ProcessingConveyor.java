@@ -1,6 +1,7 @@
 package backend.academy.log_analizer;
 
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
+import backend.academy.log_analizer.statisticCollector.collector.AverageResponseSizeCollector;
 import backend.academy.log_analizer.statisticCollector.collector.CountCollector;
 import jakarta.inject.Inject;
 import java.io.IOException;
@@ -35,6 +36,10 @@ public class ProcessingConveyor {
 
         collector.addCollector(
             new CountCollector("Количество запросов: ")
+        );
+
+        collector.addCollector(
+            new AverageResponseSizeCollector("Средний размер ответа")
         );
 
         try (Stream<String> lines = Files.lines(path)) {
