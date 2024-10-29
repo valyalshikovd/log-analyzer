@@ -1,8 +1,11 @@
 package backend.academy.log_analizer;
 
 import backend.academy.log_analizer.exception.InvalidLogString;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.inject.Inject;
+import java.time.format.DateTimeParseException;
 
+@SuppressFBWarnings("LEST_LOST_EXCEPTION_STACK_TRACE")
 public class LogStringParserImpl implements LogStringParser {
 
     private static final int REMOTE_ADDRESS_INDEX = 0;
@@ -57,8 +60,10 @@ public class LogStringParserImpl implements LogStringParser {
                 .httpReferer(logStringEntities[HTTP_REFERER_INDEX])
                 .httpUserAgent(createHttpUserAgentString(logStringEntities))
                 .build();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new InvalidLogString("Invalid log string");
+        } catch (DateTimeParseException e) {
+            throw new InvalidLogString("Invalid date");
         }
     }
 
@@ -66,7 +71,7 @@ public class LogStringParserImpl implements LogStringParser {
         StringBuilder httpUserAgentBuilder = new StringBuilder();
         for (int i = HTTP_USER_AGENT_1_INDEX; i < strings.length; i++) {
             httpUserAgentBuilder.append(strings[i]);
-            httpUserAgentBuilder.append(" ");
+            httpUserAgentBuilder.append(' ');
         }
         httpUserAgentBuilder.deleteCharAt(httpUserAgentBuilder.length() - 1);
         return httpUserAgentBuilder.toString();
