@@ -1,4 +1,4 @@
-package backend.academy.log_analizer.juice;
+package backend.academy.log_analizer.guice;
 
 import backend.academy.log_analizer.LogStringParser;
 import backend.academy.log_analizer.LogStringParserImpl;
