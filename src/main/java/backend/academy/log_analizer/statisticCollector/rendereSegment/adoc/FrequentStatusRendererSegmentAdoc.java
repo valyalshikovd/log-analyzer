@@ -17,7 +17,7 @@ public class FrequentStatusRendererSegmentAdoc extends BaseRendererSegment {
 
         String[] dataArr = data.split("\n");
 
-        sb.append("## Наиболее частые коды ответов\n");
+        sb.append("== Наиболее частые коды ответов\n");
         sb.append(
             """
                 |===
