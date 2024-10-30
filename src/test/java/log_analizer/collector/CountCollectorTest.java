@@ -1,4 +1,4 @@
-package log_analizer;
+package log_analizer.collector;
 
 import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.LogStringParser;

@@ -1,24 +1,23 @@
-package log_analizer;
+package log_analizer.collector;
 
 import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.LogStringParser;
 import backend.academy.log_analizer.LogStringParserImpl;
 import backend.academy.log_analizer.guice.ObjectFabric;
-import backend.academy.log_analizer.statisticCollector.collector.FrequentStatusCollector;
+import backend.academy.log_analizer.statisticCollector.collector.FrequentResourcesCollector;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FrequentStatusCollectorTest {
-
+public class FrequentResourcesCollectorTest {
     @Test
-    public void frequentStatusCollectorTest() {
+    public void frequentResourcesCollectorTest() {
 
         LogStringParser logStringParser = ObjectFabric.getObject(LogStringParserImpl.class);
         List<LogString> logs = new ArrayList<>();
-        FrequentStatusCollector collector =
-            new  FrequentStatusCollector("avgRespCollector", 3);
+        FrequentResourcesCollector collector =
+            new  FrequentResourcesCollector("s", 3);
 
         logs.add(logStringParser.parseLogString(
             "93.180.71.3 - - [17/May/2015:08:05:32 +0000] \"GET /downloads/product_1 HTTP/1.1\" 304 0 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)\""));
@@ -56,6 +55,6 @@ public class FrequentStatusCollectorTest {
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
         logs.forEach(collector::collectStatistics);
-        assertEquals("404: 9\n304: 8\n", collector.getStatistics());
+        assertEquals("\"GET /downloads/product_2 HTTP/1.1\": 10\n\"GET /downloads/product_1 HTTP/1.1\": 7\n", collector.getStatistics());
     }
 }
