@@ -23,8 +23,7 @@ public class FrequentResourcesCollector implements StatisticCollector {
     @Override
     public void collectStatistics(LogString logString) {
 
-        if (!frequentResources.containsKey(logString.request()))
-        {
+        if (!frequentResources.containsKey(logString.request())) {
             frequentResources.put(logString.request(), 1);
             return;
         }
