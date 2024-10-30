@@ -22,7 +22,7 @@ public class AverageResponseSizeCollector implements StatisticCollector {
     @Override
     public String getStatistics() {
         final int ROUNDED_VAL1 = 100;
-        final int ROUNDED_VAL2 = 100;
+        final double ROUNDED_VAL2 = 0.01;
         return Math.round((ROUNDED_VAL1 * (double) amount / count)) * ROUNDED_VAL2 + "";
     }
 
