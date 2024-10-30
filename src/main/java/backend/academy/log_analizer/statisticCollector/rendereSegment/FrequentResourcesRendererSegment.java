@@ -18,7 +18,7 @@ public class FrequentResourcesRendererSegment implements RenderSegment {
         StringBuilder sb = new StringBuilder();
 
         String[] dataArr = data.split("\n");
-
+        sb.append("## Наиболее частозапрашиваемые ресурсы\n");
 
         sb.append(
             """
