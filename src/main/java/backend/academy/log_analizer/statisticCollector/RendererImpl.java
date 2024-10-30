@@ -67,44 +67,6 @@ public class RendererImpl implements Renderer {
         }
     }
 
-    public static Renderer getDefaultMarkdownRenderer() {
-        Renderer renderer = new RendererImpl(new HeaderMarkdown());
-        renderer.addRenderSegment(
-            new CountRendererSegment("Количество запросов")
-        );
-        renderer.addRenderSegment(
-            new AverageResponseSizeRenderer("Средний размер ответа")
-        );
-        renderer.addRenderSegment(
-            new FrequentResourcesRendererSegment("Наиболее запрашиваемые ресурсы")
-        );
 
-        renderer.addRenderSegment(
-            new FrequentStatusRendererSegment("Наиболее частые статусы ответов")
-        );
-        renderer.addRenderSegment(
-            new PercentileRenderer("Перцентиль")
-        );
-        return renderer;
-    }
-    public static Renderer getDefaultAdocRenderer() {
-        Renderer renderer = new RendererImpl(new HeaderAdoc());
-        renderer.addRenderSegment(
-            new CountRendererSegmentAdoc("Количество запросов")
-        );
-        renderer.addRenderSegment(
-            new AverageResponseSizeRendererAdoc("Средний размер ответа")
-        );
-        renderer.addRenderSegment(
-            new FrequentResourcesRendererSegmentAdoc("Наиболее запрашиваемые ресурсы")
-        );
 
-        renderer.addRenderSegment(
-            new FrequentStatusRendererSegmentAdoc("Наиболее частые статусы ответов")
-        );
-        renderer.addRenderSegment(
-            new PercentileRendererAdoc("Перцентиль")
-        );
-        return renderer;
-    }
 }
