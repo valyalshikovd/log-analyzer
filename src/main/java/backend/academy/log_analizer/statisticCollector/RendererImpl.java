@@ -14,9 +14,12 @@ public class RendererImpl implements Renderer {
     public String render(Map<String, String> data) {
 
         StringBuilder sb = new StringBuilder();
+        sb.append("#### Общая информация + \n");
         sb.append(
-                  "|        Метрика        |     Значение |\n"
-                + "|:---------------------:|-------------:|");
+            """
+                |        Метрика        |     Значение |
+                |:---------------------:|-------------:|
+                """);
         metrics.forEach(
             segment -> {
                 if (data.containsKey(segment.getId())) {
