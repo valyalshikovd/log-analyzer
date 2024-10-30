@@ -56,6 +56,6 @@ public class FrequentStatusCollectorTest {
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
         logs.forEach(collector::collectStatistics);
-        assertEquals("404: 9\n304: 8\n", collector.getStatistics());
+        assertEquals("404:9\n304:8\n", collector.getStatistics());
     }
 }

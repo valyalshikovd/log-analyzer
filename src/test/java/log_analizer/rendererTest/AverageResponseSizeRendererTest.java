@@ -1,6 +1,7 @@
 package log_analizer.rendererTest;
 
-import backend.academy.log_analizer.statisticCollector.rendereSegment.AverageResponseSizeRenderer;
+
+import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.AverageResponseSizeRenderer;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

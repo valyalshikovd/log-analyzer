@@ -5,7 +5,7 @@ import backend.academy.log_analizer.LogStringParser;
 import backend.academy.log_analizer.LogStringParserImpl;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import backend.academy.log_analizer.statisticCollector.collector.FrequentResourcesCollector;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.FrequentStatusRendererSegment;
+import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.FrequentStatusRendererSegment;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;

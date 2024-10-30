@@ -1,15 +1,14 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment;
+package backend.academy.log_analizer.statisticCollector.rendereSegment.markdown;
+
 
 import backend.academy.log_analizer.RendererType;
 import backend.academy.log_analizer.statisticCollector.RenderSegment;
+import backend.academy.log_analizer.statisticCollector.rendereSegment.BaseRendererSegment;
 
-public class FrequentStatusRendererSegment implements RenderSegment {
+public class FrequentResourcesRendererSegment extends BaseRendererSegment {
 
-    private final String id;
-    private final RendererType type = RendererType.TABLE;
-
-    public FrequentStatusRendererSegment(String id) {
-        this.id = id;
+    public FrequentResourcesRendererSegment(String id) {
+        super(id);
     }
 
     @Override
@@ -18,11 +17,11 @@ public class FrequentStatusRendererSegment implements RenderSegment {
         StringBuilder sb = new StringBuilder();
 
         String[] dataArr = data.split("\n");
+        sb.append("## Наиболее частозапрашиваемые ресурсы\n");
 
-        sb.append("## Наиболее частые коды ответов\n");
         sb.append(
             """
-                |      Код ответа       |   Количество |
+                |        Ресурс         |   Количество |
                 |:---------------------:|-------------:|
                 """);
 
@@ -35,13 +34,4 @@ public class FrequentStatusRendererSegment implements RenderSegment {
         return sb.toString();
     }
 
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public RendererType getType() {
-        return type;
-    }
 }

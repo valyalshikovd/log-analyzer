@@ -3,18 +3,13 @@ package backend.academy.log_analizer.statisticCollector.rendereSegment;
 import backend.academy.log_analizer.RendererType;
 import backend.academy.log_analizer.statisticCollector.RenderSegment;
 
+public abstract class BaseRendererSegment implements RenderSegment {
 
-public class AverageResponseSizeRenderer implements RenderSegment {
-    private final String id;
-    private final RendererType type = RendererType.METRIC;
+    protected final String id;
+    protected final RendererType type = RendererType.TABLE;
 
-    public AverageResponseSizeRenderer(String id) {
+    public BaseRendererSegment(String id) {
         this.id = id;
-    }
-
-    @Override
-    public String render(String data) {
-        return "| Средний размер ответа |"+data+"b |";
     }
 
     @Override

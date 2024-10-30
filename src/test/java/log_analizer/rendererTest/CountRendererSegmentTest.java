@@ -1,6 +1,6 @@
 package log_analizer.rendererTest;
 
-import backend.academy.log_analizer.statisticCollector.rendereSegment.CountRendererSegment;
+import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.CountRendererSegment;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
