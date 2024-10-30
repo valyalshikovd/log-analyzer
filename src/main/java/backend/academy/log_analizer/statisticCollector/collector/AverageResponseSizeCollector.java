@@ -21,7 +21,7 @@ public class AverageResponseSizeCollector implements StatisticCollector {
 
     @Override
     public String getStatistics() {
-        return amount / count + "";
+        return Math.round((100 * (double) amount / count)) * 0.01 + "";
     }
 
     @Override public String toString() {
