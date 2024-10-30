@@ -26,7 +26,7 @@ public class PercentileCollector implements StatisticCollector {
 
     @Override
     public String getStatistics() {
-        return list.get((int) Math.round((count) * 0.95)) + "";
+        return list.get((int) Math.floor((count) * 0.95)) + "";
     }
 
     @Override public String toString() {
