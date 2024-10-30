@@ -8,7 +8,7 @@ import backend.academy.log_analizer.statisticCollector.rendereSegment.BaseRender
 public class FrequentResourcesRendererSegment extends BaseRendererSegment {
 
     public FrequentResourcesRendererSegment(String id) {
-        super(id);
+        super(id, RendererType.TABLE);
     }
 
     @Override

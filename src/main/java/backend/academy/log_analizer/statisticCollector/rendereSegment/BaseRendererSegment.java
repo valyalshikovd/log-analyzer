@@ -6,10 +6,11 @@ import backend.academy.log_analizer.statisticCollector.RenderSegment;
 public abstract class BaseRendererSegment implements RenderSegment {
 
     protected final String id;
-    protected final RendererType type = RendererType.TABLE;
+    protected final RendererType type;
 
-    public BaseRendererSegment(String id) {
+    public BaseRendererSegment(String id, RendererType type) {
         this.id = id;
+        this.type = type;
     }
 
     @Override

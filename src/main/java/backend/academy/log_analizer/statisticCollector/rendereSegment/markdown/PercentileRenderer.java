@@ -7,7 +7,7 @@ import backend.academy.log_analizer.statisticCollector.rendereSegment.BaseRender
 public class PercentileRenderer extends BaseRendererSegment {
 
     public PercentileRenderer(String id) {
-        super(id);
+        super(id, RendererType.METRIC);
     }
 
     @Override
