@@ -5,6 +5,7 @@ import backend.academy.log_analizer.LogStringParser;
 import backend.academy.log_analizer.LogStringParserImpl;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import backend.academy.log_analizer.statisticCollector.collector.FrequentResourcesCollector;
+import backend.academy.log_analizer.statisticCollector.collector.FrequentStatusCollector;
 import backend.academy.log_analizer.statisticCollector.rendereSegment.FrequentStatusRendererSegment;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ class FrequentStatusRendererSegmentTest {
 
         LogStringParser logStringParser = ObjectFabric.getObject(LogStringParserImpl.class);
         List<LogString> logs = new ArrayList<>();
-        FrequentResourcesCollector collector =
-            new  FrequentResourcesCollector("s", 3);
+        FrequentStatusCollector collector =
+            new  FrequentStatusCollector("s", 3);
 
         logs.add(logStringParser.parseLogString(
             "93.180.71.3 - - [17/May/2015:08:05:32 +0000] \"GET /downloads/product_1 HTTP/1.1\" 304 0 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)\""));
@@ -59,15 +60,16 @@ class FrequentStatusRendererSegmentTest {
         logs.forEach(collector::collectStatistics);
 
         FrequentStatusRendererSegment r = new FrequentStatusRendererSegment("s");
-        r.render(collector.getStatistics());
+
+        System.out.println(r.render(collector.getStatistics()));
 
         assertEquals(
             """
            ## Наиболее частые коды ответов
            |      Код ответа       |   Количество |
            |:---------------------:|-------------:|
-           |"GET /downloads/product_2 HTTP/1.1"| 10 |
-           |"GET /downloads/product_1 HTTP/1.1"| 7 |
+           |404|9 |
+           |304|8 |
            """, r.render(collector.getStatistics())
         );
     }
