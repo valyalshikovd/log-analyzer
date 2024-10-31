@@ -1,8 +1,8 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment.markdown;
+package backend.academy.log_analizer.rendereSegment.markdown;
 
 
-import backend.academy.log_analizer.RendererType;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.BaseRendererSegment;
+import backend.academy.log_analizer.rendereSegment.RendererType;
+import backend.academy.log_analizer.rendereSegment.BaseRendererSegment;
 
 public class CountRendererSegment extends BaseRendererSegment {
 

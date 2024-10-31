@@ -1,7 +1,4 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment;
-
-import backend.academy.log_analizer.RendererType;
-import backend.academy.log_analizer.statisticCollector.RenderSegment;
+package backend.academy.log_analizer.rendereSegment;
 
 public abstract class BaseRendererSegment implements RenderSegment {
 

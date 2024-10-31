@@ -1,7 +1,7 @@
 package log_analizer.rendererTest;
 
 
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.PercentileRenderer;
+import backend.academy.log_analizer.rendereSegment.markdown.PercentileRenderer;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,6 +1,6 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment.adoc;
+package backend.academy.log_analizer.rendereSegment.adoc;
 
-import backend.academy.log_analizer.statisticCollector.rendereSegment.Header;
+import backend.academy.log_analizer.rendereSegment.Header;
 
 public class HeaderAdoc implements Header {
     @Override

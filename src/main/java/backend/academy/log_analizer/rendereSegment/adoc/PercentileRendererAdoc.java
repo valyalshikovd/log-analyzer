@@ -1,7 +1,7 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment.adoc;
+package backend.academy.log_analizer.rendereSegment.adoc;
 
-import backend.academy.log_analizer.RendererType;
-import backend.academy.log_analizer.statisticCollector.RenderSegment;
+import backend.academy.log_analizer.rendereSegment.RendererType;
+import backend.academy.log_analizer.rendereSegment.RenderSegment;
 
 public class PercentileRendererAdoc implements RenderSegment {
 

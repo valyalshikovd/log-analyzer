@@ -1,6 +1,4 @@
-package backend.academy.log_analizer.statisticCollector;
-
-import backend.academy.log_analizer.RendererType;
+package backend.academy.log_analizer.rendereSegment;
 
 public interface RenderSegment {
 

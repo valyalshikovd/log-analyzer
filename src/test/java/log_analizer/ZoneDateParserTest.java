@@ -1,6 +1,6 @@
 package log_analizer;
 
-import backend.academy.log_analizer.ZoneDateParserImpl;
+import backend.academy.log_analizer.parser.ZoneDateParserImpl;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import org.junit.jupiter.api.Test;
 import java.time.ZoneId;

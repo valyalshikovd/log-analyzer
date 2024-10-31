@@ -1,7 +1,7 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment.adoc;
+package backend.academy.log_analizer.rendereSegment.adoc;
 
-import backend.academy.log_analizer.RendererType;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.BaseRendererSegment;
+import backend.academy.log_analizer.rendereSegment.RendererType;
+import backend.academy.log_analizer.rendereSegment.BaseRendererSegment;
 
 
 public class AverageResponseSizeRendererAdoc extends BaseRendererSegment {

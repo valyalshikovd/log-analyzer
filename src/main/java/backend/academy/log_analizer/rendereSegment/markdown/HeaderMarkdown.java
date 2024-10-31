@@ -1,6 +1,6 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment.markdown;
+package backend.academy.log_analizer.rendereSegment.markdown;
 
-import backend.academy.log_analizer.statisticCollector.rendereSegment.Header;
+import backend.academy.log_analizer.rendereSegment.Header;
 
 public class HeaderMarkdown implements Header {
     @Override

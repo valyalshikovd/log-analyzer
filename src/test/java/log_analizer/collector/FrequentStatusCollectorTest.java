@@ -1,8 +1,8 @@
 package log_analizer.collector;
 
 import backend.academy.log_analizer.LogString;
-import backend.academy.log_analizer.LogStringParser;
-import backend.academy.log_analizer.LogStringParserImpl;
+import backend.academy.log_analizer.parser.LogStringParser;
+import backend.academy.log_analizer.parser.LogStringParserImpl;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import backend.academy.log_analizer.statisticCollector.collector.FrequentStatusCollector;
 import org.junit.jupiter.api.Test;

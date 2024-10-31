@@ -1,4 +1,4 @@
-package backend.academy.log_analizer.statisticCollector;
+package backend.academy.log_analizer.rendereSegment;
 
 
 import java.util.Map;

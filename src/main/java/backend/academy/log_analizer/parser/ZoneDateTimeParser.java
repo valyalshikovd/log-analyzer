@@ -1,4 +1,4 @@
-package backend.academy.log_analizer;
+package backend.academy.log_analizer.parser;
 
 import java.time.ZonedDateTime;
 

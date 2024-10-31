@@ -1,19 +1,17 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment;
+package backend.academy.log_analizer.rendereSegment;
 
-import backend.academy.log_analizer.statisticCollector.Renderer;
-import backend.academy.log_analizer.statisticCollector.RendererImpl;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.AverageResponseSizeRendererAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.CountRendererSegmentAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.FrequentResourcesRendererSegmentAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.FrequentStatusRendererSegmentAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.HeaderAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.adoc.PercentileRendererAdoc;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.AverageResponseSizeRenderer;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.CountRendererSegment;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.FrequentResourcesRendererSegment;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.FrequentStatusRendererSegment;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.HeaderMarkdown;
-import backend.academy.log_analizer.statisticCollector.rendereSegment.markdown.PercentileRenderer;
+import backend.academy.log_analizer.rendereSegment.adoc.AverageResponseSizeRendererAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.CountRendererSegmentAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.FrequentResourcesRendererSegmentAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.FrequentStatusRendererSegmentAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.HeaderAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.PercentileRendererAdoc;
+import backend.academy.log_analizer.rendereSegment.markdown.AverageResponseSizeRenderer;
+import backend.academy.log_analizer.rendereSegment.markdown.CountRendererSegment;
+import backend.academy.log_analizer.rendereSegment.markdown.FrequentResourcesRendererSegment;
+import backend.academy.log_analizer.rendereSegment.markdown.FrequentStatusRendererSegment;
+import backend.academy.log_analizer.rendereSegment.markdown.HeaderMarkdown;
+import backend.academy.log_analizer.rendereSegment.markdown.PercentileRenderer;
 
 public class RendererFactory {
 

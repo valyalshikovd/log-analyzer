@@ -1,4 +1,6 @@
-package backend.academy.log_analizer;
+package backend.academy.log_analizer.filter;
+
+import backend.academy.log_analizer.LogString;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;

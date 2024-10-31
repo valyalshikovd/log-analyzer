@@ -1,5 +1,6 @@
-package backend.academy.log_analizer;
+package backend.academy.log_analizer.parser;
 
+import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.exception.InvalidLogString;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.inject.Inject;

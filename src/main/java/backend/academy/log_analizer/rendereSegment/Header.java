@@ -1,4 +1,4 @@
-package backend.academy.log_analizer.statisticCollector.rendereSegment;
+package backend.academy.log_analizer.rendereSegment;
 
 public interface Header {
 

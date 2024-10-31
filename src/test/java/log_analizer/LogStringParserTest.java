@@ -1,7 +1,7 @@
 package log_analizer;
 
 import backend.academy.log_analizer.LogString;
-import backend.academy.log_analizer.LogStringParserImpl;
+import backend.academy.log_analizer.parser.LogStringParserImpl;
 import backend.academy.log_analizer.exception.InvalidLogString;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import org.junit.jupiter.api.Assertions;
