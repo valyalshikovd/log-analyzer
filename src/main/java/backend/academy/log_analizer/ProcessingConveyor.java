@@ -21,18 +21,16 @@ import java.time.ZonedDateTime;
 public class ProcessingConveyor {
 
     private final FilterChain filterChain;
-    private final Renderer renderer;
-    private final StatisticCollectorComposer collectorComposer;
-    private final LogStringParser logStringParser;
+    private  Renderer renderer;
+    private  StatisticCollectorComposer collectorComposer;
+    private LogStringParser logStringParser;
 
     @Inject
     public ProcessingConveyor(
         LogStringParser logStringParser
     ) {
         this.filterChain =  new FilterChain();
-
         ZonedDateTime now = ZonedDateTime.now();
-
         this.filterChain.addTimeFilter(
             (LogString logString) -> logString.timeLocal().isBefore(now)
         );
