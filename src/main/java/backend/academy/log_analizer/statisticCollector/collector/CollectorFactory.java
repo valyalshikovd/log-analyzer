@@ -22,6 +22,9 @@ public class CollectorFactory {
         collector.addCollector(
             new FrequentStatusCollector("Наиболее частые статусы ответов", 5)
         );
+        collector.addCollector(
+            new FrequentIPCollector("Наиболее частые IP", 5)
+        );
         return collector;
     }
 }
