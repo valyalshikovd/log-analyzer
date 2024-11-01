@@ -6,6 +6,7 @@ import backend.academy.log_analizer.rendereSegment.adoc.FrequentIPRendererSegmen
 import backend.academy.log_analizer.rendereSegment.adoc.FrequentResourcesRendererSegmentAdoc;
 import backend.academy.log_analizer.rendereSegment.adoc.FrequentStatusRendererSegmentAdoc;
 import backend.academy.log_analizer.rendereSegment.adoc.HeaderAdoc;
+import backend.academy.log_analizer.rendereSegment.adoc.MedianResponseSizeRendererAdoc;
 import backend.academy.log_analizer.rendereSegment.adoc.PercentileRendererAdoc;
 import backend.academy.log_analizer.rendereSegment.markdown.AverageResponseSizeRenderer;
 import backend.academy.log_analizer.rendereSegment.markdown.CountRendererSegment;
@@ -13,6 +14,7 @@ import backend.academy.log_analizer.rendereSegment.markdown.FrequentIPRendererSe
 import backend.academy.log_analizer.rendereSegment.markdown.FrequentResourcesRendererSegment;
 import backend.academy.log_analizer.rendereSegment.markdown.FrequentStatusRendererSegment;
 import backend.academy.log_analizer.rendereSegment.markdown.HeaderMarkdown;
+import backend.academy.log_analizer.rendereSegment.markdown.MedianResponseSizeRenderer;
 import backend.academy.log_analizer.rendereSegment.markdown.PercentileRenderer;
 
 public class RendererFactory {
@@ -38,6 +40,9 @@ public class RendererFactory {
         renderer.addRenderSegment(
             new FrequentIPRendererSegment("Наиболее частые IP")
         );
+        renderer.addRenderSegment(
+            new MedianResponseSizeRenderer("Медиана размера ответа")
+        );
         return renderer;
     }
     public static Renderer getDefaultAdocRenderer() {
@@ -61,6 +66,10 @@ public class RendererFactory {
         renderer.addRenderSegment(
             new FrequentIPRendererSegmentAdoc("Наиболее частые IP")
         );
+        renderer.addRenderSegment(
+            new MedianResponseSizeRendererAdoc("Медиана размера ответа")
+        );
+
         return renderer;
     }
 }

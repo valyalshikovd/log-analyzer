@@ -1,5 +1,6 @@
 package backend.academy.log_analizer.statisticCollector.collector;
 
+import backend.academy.log_analizer.rendereSegment.markdown.MedianResponseSizeRenderer;
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 
 public class CollectorFactory {
@@ -24,6 +25,9 @@ public class CollectorFactory {
         );
         collector.addCollector(
             new FrequentIPCollector("Наиболее частые IP", 5)
+        );
+        collector.addCollector(
+            new MedianSizeCollector("Медиана размера ответа")
         );
         return collector;
     }
