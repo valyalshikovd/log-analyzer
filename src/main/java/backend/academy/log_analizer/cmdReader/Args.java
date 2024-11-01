@@ -22,4 +22,7 @@ public class Args {
 
     @Parameter(names = "--filter-value")
     private String filterValue;
+
+    @Parameter(names = "--to")
+    private String to;
 }
