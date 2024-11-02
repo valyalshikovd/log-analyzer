@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Дополнительная статистика
+ */
 public class FrequentIPCollector implements StatisticCollector {
     private final HashMap<String, Integer> frequentResources = new HashMap<>();
 
