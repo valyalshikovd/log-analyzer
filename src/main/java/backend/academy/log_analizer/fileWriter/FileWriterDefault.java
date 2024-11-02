@@ -1,6 +1,7 @@
 package backend.academy.log_analizer.fileWriter;
 
 import backend.academy.log_analizer.exception.FailToReadException;
+import backend.academy.log_analizer.exception.FailToWriteException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ public class FileWriterDefault implements FileWriter {
         try (FileOutputStream outputStream = new FileOutputStream(filename)) {
             outputStream.write(content.getBytes());
         } catch (IOException e) {
-            throw new FailToReadException(e.getMessage());
+            throw new FailToWriteException(e.getMessage());
         }
     }
 

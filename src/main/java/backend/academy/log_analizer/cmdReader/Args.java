@@ -25,4 +25,7 @@ public class Args {
 
     @Parameter(names = "--to")
     private String to;
+
+    @Parameter(names = "--save-path", required = true)
+    private String savePath;
 }

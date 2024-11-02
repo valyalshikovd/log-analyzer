@@ -5,10 +5,11 @@ import backend.academy.log_analizer.fileWriter.FileWriterDefault;
 import backend.academy.log_analizer.filter.FilterChain;
 import backend.academy.log_analizer.parser.LogStringParser;
 import backend.academy.log_analizer.rendereSegment.Renderer;
+import backend.academy.log_analizer.rendereSegment.RendererFactory;
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 import backend.academy.log_analizer.statisticCollector.collector.CollectorFactory;
-import backend.academy.log_analizer.rendereSegment.RendererFactory;
 import jakarta.inject.Inject;
+import lombok.Setter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,9 +21,13 @@ import java.time.ZonedDateTime;
 
 public class ProcessingConveyor {
 
-    private final FilterChain filterChain;
-    private  Renderer renderer;
-    private  StatisticCollectorComposer collectorComposer;
+    @Setter
+    private  FilterChain filterChain;
+    @Setter
+    private Renderer renderer;
+    @Setter
+    private StatisticCollectorComposer collectorComposer;
+    @Setter
     private LogStringParser logStringParser;
 
     @Inject
@@ -40,7 +45,7 @@ public class ProcessingConveyor {
         this.logStringParser = logStringParser;
     }
 
-    public void process(String pathString) {
+    public void process(String pathString, String resPath) {
 
         try {
             if (pathString.startsWith("http://") || pathString.startsWith("https://")) {
@@ -61,7 +66,7 @@ public class ProcessingConveyor {
             throw new FailToReadException(e.getMessage());
         }
 
-        new FileWriterDefault().writeFile("res.md", renderer.render(collectorComposer.getStatistics()));
+        new FileWriterDefault().writeFile(resPath, renderer.render(collectorComposer.getStatistics()));
     }
 
 }
