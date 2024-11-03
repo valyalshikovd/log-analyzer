@@ -1,6 +1,6 @@
 package backend.academy.log_analizer.rendereSegment;
 
-public interface Header {
+public interface Decor {
 
     String getHeader();
 

@@ -1,8 +1,8 @@
 package backend.academy.log_analizer.rendereSegment.adoc;
 
-import backend.academy.log_analizer.rendereSegment.Header;
+import backend.academy.log_analizer.rendereSegment.Decor;
 
-public class HeaderAdoc implements Header {
+public class DecorAdoc implements Decor {
     @Override
     public String getHeader() {
         return """

@@ -9,9 +9,9 @@ public class RendererImpl implements Renderer {
     private final List<RenderSegment> metrics = new ArrayList<>();
     private final List<RenderSegment> tables = new ArrayList<>();
 
-    private final Header header;
+    private final Decor header;
 
-    public RendererImpl(Header header) {
+    public RendererImpl(Decor header) {
         this.header = header;
     }
 
