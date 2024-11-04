@@ -1,7 +1,7 @@
 package backend.academy.log_analizer.rendereSegment.adoc;
 
-import backend.academy.log_analizer.rendereSegment.RendererType;
 import backend.academy.log_analizer.rendereSegment.BaseRendererSegment;
+import backend.academy.log_analizer.rendereSegment.RendererType;
 
 public class FrequentResourcesRendererSegmentAdoc extends BaseRendererSegment {
 
@@ -27,8 +27,8 @@ public class FrequentResourcesRendererSegmentAdoc extends BaseRendererSegment {
 
         for (String line : dataArr) {
             String[] lineArr = line.split(":");
-            sb.append("|").append(lineArr[0]).append("|").append(lineArr[1]).append(" |");
-            sb.append("\n");
+            sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
+            sb.append('\n');
         }
         sb.append("|===\n");
 
