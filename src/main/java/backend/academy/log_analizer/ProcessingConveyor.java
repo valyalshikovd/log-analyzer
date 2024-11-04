@@ -33,19 +33,21 @@ public class ProcessingConveyor {
     private Renderer renderer;
     private StatisticCollectorComposer collectorComposer;
     private LogStringParser logStringParser;
-
     private FileWriter fileWriter = new FileWriterDefault();
 
+    /**
+     * @param logStringParser
+     *
+     * Класс сделан максимально гибко, при желании можно его пополнить различными вариациями
+     * фильтров, сборщиков статистики, рендереров, парсеров и пр. Те классы в своб очередь тоже являются  гибко настраевыми.
+     * По умолчанию класс настраивается рендерером и сборщиками статистики по умолчанию.
+     * Также в это классе реализована функция чтения как из файла так и c URL.
+     */
     @Inject
     public ProcessingConveyor(
         LogStringParser logStringParser
     ) {
         this.filterChain =  new FilterChain();
-        ZonedDateTime now = ZonedDateTime.now();
-        this.filterChain.addTimeFilter(
-            (LogString logString) -> logString.timeLocal().isBefore(now)
-        );
-
         this.renderer = RendererFactory.getDefaultMarkdownRenderer();
         this.collectorComposer = CollectorFactory.getDefaultStatisticCollector();
         this.logStringParser = logStringParser;

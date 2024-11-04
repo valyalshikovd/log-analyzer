@@ -8,9 +8,14 @@ public class RendererImpl implements Renderer {
 
     private final List<RenderSegment> metrics = new ArrayList<>();
     private final List<RenderSegment> tables = new ArrayList<>();
-
     private final Decor header;
 
+    /**
+     *Класс рендерера, который создает итоговый результат из результатов множества сегментов.
+     * В объект класса можно добавить неограниченное количество рендерСегментов и результат каждого из них будет конкатенирован в общее.
+     * Рендер сегменты отличаются по типу: метрики и таблицы. Рендер сегмент "метрика" будет отрисовывать строчку в таблице с остальными метриками.
+     * Рендер сегмент "таблица" будет отрисосывать таблицу для своего параметра.
+     */
     public RendererImpl(Decor header) {
         this.header = header;
     }

@@ -8,6 +8,9 @@ public class FilterChain {
 
     private final ArrayList<LogFilter> filters = new ArrayList<>();
 
+    /**
+     * Класс цепочки фильтров. В него можно добавить свой фильтр соответствующий интерфейсу LogFilter
+     */
     public FilterChain() {
     }
 
