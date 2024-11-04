@@ -1,6 +1,7 @@
 package backend.academy.log_analizer;
 
 import backend.academy.log_analizer.exception.FailToReadException;
+import backend.academy.log_analizer.fileWriter.FileWriter;
 import backend.academy.log_analizer.fileWriter.FileWriterDefault;
 import backend.academy.log_analizer.filter.FilterChain;
 import backend.academy.log_analizer.parser.LogStringParser;
@@ -8,27 +9,32 @@ import backend.academy.log_analizer.rendereSegment.Renderer;
 import backend.academy.log_analizer.rendereSegment.RendererFactory;
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 import backend.academy.log_analizer.statisticCollector.collector.CollectorFactory;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.inject.Inject;
-import lombok.Setter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.ZonedDateTime;
+import lombok.Setter;
 
+@Setter
+@SuppressFBWarnings(
+    {"LEST_LOST_EXCEPTION_STACK_TRACE",
+    "PATH_TRAVERSAL_IN",          //требования к безопасности не указаны
+    "URLCONNECTION_SSRF_FD"})
 public class ProcessingConveyor {
 
-    @Setter
     private  FilterChain filterChain;
-    @Setter
     private Renderer renderer;
-    @Setter
     private StatisticCollectorComposer collectorComposer;
-    @Setter
     private LogStringParser logStringParser;
+
+    private FileWriter fileWriter = new FileWriterDefault();
 
     @Inject
     public ProcessingConveyor(
@@ -50,7 +56,9 @@ public class ProcessingConveyor {
         try {
             if (pathString.startsWith("http://") || pathString.startsWith("https://")) {
                 URL url = new URL(pathString);
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                try (BufferedReader in = new BufferedReader(
+                    new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)
+                )) {
                     in.lines()
                         .map(logStringParser::parseLogString)
                         .filter(filterChain::checkFilters)
@@ -66,7 +74,7 @@ public class ProcessingConveyor {
             throw new FailToReadException(e.getMessage());
         }
 
-        new FileWriterDefault().writeFile(resPath, renderer.render(collectorComposer.getStatistics()));
+        fileWriter.writeFile(resPath, renderer.render(collectorComposer.getStatistics()));
     }
 
 }

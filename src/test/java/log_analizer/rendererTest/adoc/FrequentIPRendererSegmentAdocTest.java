@@ -62,9 +62,9 @@ class FrequentIPRendererSegmentAdocTest {
                 == Наиболее частые клиенты
                 |===
                 |        IP клиента         |   Количество |
-                |83.161.14.106| 3 |
-                |31.22.86.126| 2 |
-                |80.91.33.133| 2 |
+                |83.161.14.106 | 3 |
+                |31.22.86.126 | 2 |
+                |80.91.33.133 | 2 |
                 |===
                 """, new FrequentIPRendererSegmentAdoc("r").render(collector.getStatistics())
         );

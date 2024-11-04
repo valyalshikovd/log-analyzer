@@ -1,7 +1,7 @@
 package backend.academy.log_analizer.rendereSegment.markdown;
 
-import backend.academy.log_analizer.rendereSegment.RendererType;
 import backend.academy.log_analizer.rendereSegment.BaseRendererSegment;
+import backend.academy.log_analizer.rendereSegment.RendererType;
 
 public class PercentileRenderer extends BaseRendererSegment {
 
@@ -11,7 +11,7 @@ public class PercentileRenderer extends BaseRendererSegment {
 
     @Override
     public String render(String data) {
-        return "|  95p размера ответа |"+data+"b |";
+        return "|  95p размера ответа |" + data + "b |";
     }
 
 

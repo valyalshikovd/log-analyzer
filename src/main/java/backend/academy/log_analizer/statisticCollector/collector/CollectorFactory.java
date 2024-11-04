@@ -1,10 +1,13 @@
 package backend.academy.log_analizer.statisticCollector.collector;
 
-import backend.academy.log_analizer.rendereSegment.markdown.MedianResponseSizeRenderer;
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
+import lombok.experimental.UtilityClass;
 
+@SuppressWarnings("MultipleStringLiterals")
+@UtilityClass
 public class CollectorFactory {
 
+    private static final int DEFAULT_LIMIT = 5;
 
     public static StatisticCollectorComposer getDefaultStatisticCollector() {
         StatisticCollectorComposer collector = new StatisticCollectorComposer();
@@ -18,13 +21,13 @@ public class CollectorFactory {
             new PercentileCollector("Перцентиль")
         );
         collector.addCollector(
-            new FrequentResourcesCollector("Наиболее запрашиваемые ресурсы", 5)
+            new FrequentResourcesCollector("Наиболее запрашиваемые ресурсы", DEFAULT_LIMIT)
         );
         collector.addCollector(
-            new FrequentStatusCollector("Наиболее частые статусы ответов", 5)
+            new FrequentStatusCollector("Наиболее частые статусы ответов", DEFAULT_LIMIT)
         );
         collector.addCollector(
-            new FrequentIPCollector("Наиболее частые IP", 5)
+            new FrequentIPCollector("Наиболее частые IP", DEFAULT_LIMIT)
         );
         collector.addCollector(
             new MedianSizeCollector("Медиана размера ответа")

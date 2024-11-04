@@ -8,6 +8,7 @@ import java.util.List;
 public class PercentileCollector implements StatisticCollector {
     private int count = 0;
     private final String id;
+    private static final double PERCENT = 0.95;
 
     /**
      * хранить все ответы не эффективно
@@ -26,7 +27,7 @@ public class PercentileCollector implements StatisticCollector {
 
     @Override
     public String getStatistics() {
-        return list.get((int) Math.floor((count) * 0.95)) + "";
+        return list.get((int) Math.floor((count) * PERCENT)) + "";
     }
 
     @Override public String toString() {

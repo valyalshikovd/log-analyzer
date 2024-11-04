@@ -2,7 +2,6 @@ package backend.academy.log_analizer.statisticCollector.collector;
 
 import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.statisticCollector.StatisticCollector;
-import org.apache.commons.collections.list.TreeList;
 import java.util.ArrayList;
 import java.util.Collections;
 

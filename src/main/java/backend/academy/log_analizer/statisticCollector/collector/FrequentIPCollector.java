@@ -43,7 +43,7 @@ public class FrequentIPCollector implements StatisticCollector {
 
         StringBuilder statistics = new StringBuilder();
         for (String key : sortedKeys) {
-            statistics.append(key).append(": ").append(frequentResources.get(key)).append("\n");
+            statistics.append(key).append(" : ").append(frequentResources.get(key)).append('\n');
         }
         return statistics.toString();
     }

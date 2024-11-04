@@ -34,15 +34,15 @@ public class FrequentResourcesCollector implements StatisticCollector {
     @Override
     public String getStatistics() {
 
-        List<String> sortedKeys = frequentResources.entrySet().stream()
+        List<String> keys = frequentResources.entrySet().stream()
             .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
             .map(Map.Entry::getKey)
             .limit(limit)
             .toList();
 
         StringBuilder statistics = new StringBuilder();
-        for (String key : sortedKeys) {
-            statistics.append(key).append(": ").append(frequentResources.get(key)).append("\n");
+        for (String key : keys) {
+            statistics.append(key).append(": ").append(frequentResources.get(key)).append('\n');
         }
         return statistics.toString();
     }

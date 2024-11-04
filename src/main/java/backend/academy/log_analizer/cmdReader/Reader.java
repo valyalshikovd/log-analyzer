@@ -1,14 +1,11 @@
 package backend.academy.log_analizer.cmdReader;
 
-import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.ProcessingConveyor;
 import backend.academy.log_analizer.filter.FilterChain;
-import backend.academy.log_analizer.filter.LogFilter;
 import backend.academy.log_analizer.parser.LogStringParserImpl;
 import backend.academy.log_analizer.parser.ZoneDateParserImpl;
 import backend.academy.log_analizer.parser.ZoneDateTimeParser;
 import backend.academy.log_analizer.rendereSegment.RendererFactory;
-import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 import backend.academy.log_analizer.statisticCollector.collector.CollectorFactory;
 import com.beust.jcommander.JCommander;
 
@@ -42,7 +39,7 @@ public class Reader {
 
         String suffix;
 
-        if (args.format().equals("adoc")) {
+        if ("adoc".equals(args.format())) {
             p.renderer(RendererFactory.getDefaultAdocRenderer());
             suffix = ".adoc";
         } else {
@@ -61,7 +58,6 @@ public class Reader {
         }
         if (args.filterField() != null && args.filterValue() != null) {
             String value = args.filterValue();
-            System.out.println(value);
             filterChain.addTimeFilter(
                 (logString) -> switch (args.filterField()) {
                     case "remoteAddr" -> logString.remoteAddr().contains(value);

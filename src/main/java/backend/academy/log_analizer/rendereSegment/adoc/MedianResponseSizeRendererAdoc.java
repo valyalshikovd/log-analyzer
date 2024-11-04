@@ -12,7 +12,7 @@ public class MedianResponseSizeRendererAdoc extends BaseRendererSegment {
 
     @Override
     public String render(String data) {
-        return "| Медианный размер ответа |"+data+"b ";
+        return "| Медианный размер ответа |" + data + "b ";
     }
 
 }

@@ -25,7 +25,7 @@ public class RendererImpl implements Renderer {
             segment -> {
                 if (data.containsKey(segment.getId())) {
                     sb.append(segment.render(data.get(segment.getId())));
-                    sb.append("\n");
+                    sb.append('\n');
                 }
             }
         );
@@ -34,7 +34,7 @@ public class RendererImpl implements Renderer {
             segment -> {
                 if (data.containsKey(segment.getId())) {
                     sb.append(segment.render(data.get(segment.getId())));
-                    sb.append("\n");
+                    sb.append('\n');
                 }
             }
         );
