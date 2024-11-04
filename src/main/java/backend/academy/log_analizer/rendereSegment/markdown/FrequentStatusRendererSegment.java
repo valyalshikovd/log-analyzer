@@ -30,7 +30,7 @@ public class FrequentStatusRendererSegment extends BaseRendererSegment {
                 sb.append('\n');
             }
         } catch (Exception e) {
-            sb.append("-");
+            sb.append('-');
         }
 
         return sb.toString();

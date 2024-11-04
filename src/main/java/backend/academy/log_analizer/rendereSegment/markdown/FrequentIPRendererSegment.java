@@ -29,7 +29,7 @@ public class FrequentIPRendererSegment extends BaseRendererSegment {
                 sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
                 sb.append('\n');
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             sb.append('-');
         }
         return sb.toString();
