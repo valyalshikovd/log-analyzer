@@ -17,16 +17,20 @@ public class FrequentStatusRendererSegment extends BaseRendererSegment {
         String[] dataArr = data.split("\n");
 
         sb.append("## Наиболее частые коды ответов\n");
-        sb.append(
-            """
-                |      Код ответа       |   Количество |
-                |:---------------------:|-------------:|
-                """);
+        try {
+            sb.append(
+                """
+                    |      Код ответа       |   Количество |
+                    |:---------------------:|-------------:|
+                    """);
 
-        for (String line : dataArr) {
-            String[] lineArr = line.split(":");
-            sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
-            sb.append('\n');
+            for (String line : dataArr) {
+                String[] lineArr = line.split(":");
+                sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
+                sb.append('\n');
+            }
+        } catch (Exception e) {
+            sb.append("-");
         }
 
         return sb.toString();
