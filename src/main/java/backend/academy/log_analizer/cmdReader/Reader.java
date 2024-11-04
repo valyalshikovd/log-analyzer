@@ -32,7 +32,16 @@ public class Reader {
 
     }
 
-
+    /**
+     * Метод, собирающий конвеер в зависимости от параметров. Программа принимает следующие параметры:
+     * --path (обязательный) - путь к файлу-источнику
+     * --save-path (обязательный) - путь, где нужно сохранить отчет
+     * --format (обязательный) - формат отчета "md" или "adoc"
+     * --from - время в формате ISO8601 (к примеру 2023-11-04T12:34:56+02:00) с которого начинать учитывать логи
+     * --to - время в формате ISO8601 (к примеру 2023-11-04T12:34:56+02:00) до которого  учитывать логи
+     * --filter-field - название параметра, по которому производить фильтрацию
+     * --filter-value - значение этого параметра
+     */
     public void start() {
         try {
             ProcessingConveyor p = new ProcessingConveyor(new LogStringParserImpl(new ZoneDateParserImpl()));
@@ -60,6 +69,7 @@ public class Reader {
             if (args.filterField() != null && args.filterValue() != null) {
                 String value = args.filterValue();
                 filterChain.addTimeFilter(
+                    //название полей по которым можно делать фильтрацию
                     (logString) -> switch (args.filterField()) {
                         case "remoteAddr" -> logString.remoteAddr().contains(value);
                         case "remoteHost" -> logString.remoteHost().contains(value);
@@ -79,7 +89,7 @@ public class Reader {
         } catch (DateTimeException e) {
             System.err.println("Не правильный формат даты: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Не удалось собрать статистику");
+            System.err.println("Не удалось собрать статистику " + e.getMessage());
         }
     }
 }
