@@ -19,7 +19,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.ZonedDateTime;
 import lombok.Setter;
 
 @Setter
@@ -36,10 +35,9 @@ public class ProcessingConveyor {
     private FileWriter fileWriter = new FileWriterDefault();
 
     /**
-     * @param logStringParser
-     *
      * Класс сделан максимально гибко, при желании можно его пополнить различными вариациями
-     * фильтров, сборщиков статистики, рендереров, парсеров и пр. Те классы в своб очередь тоже являются  гибко настраевыми.
+     * фильтров, сборщиков статистики, рендереров, парсеров и пр.
+     * Те классы в своб очередь тоже являются  гибко настраевыми.
      * По умолчанию класс настраивается рендерером и сборщиками статистики по умолчанию.
      * Также в это классе реализована функция чтения как из файла так и c URL.
      */
