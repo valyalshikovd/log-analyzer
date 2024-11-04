@@ -21,7 +21,11 @@ public class MedianSizeCollector implements StatisticCollector {
 
     @Override
     public String getStatistics() {
-        return list.get(list.size() / 2) + "";
+        try {
+            return list.get(list.size() / 2) + "";
+        } catch (Exception e) {
+            return "-";
+        }
     }
 
     @Override public String toString() {

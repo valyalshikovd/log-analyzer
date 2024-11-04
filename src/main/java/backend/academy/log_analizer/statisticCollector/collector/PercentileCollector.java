@@ -27,7 +27,11 @@ public class PercentileCollector implements StatisticCollector {
 
     @Override
     public String getStatistics() {
-        return list.get((int) Math.floor((count) * PERCENT)) + "";
+        try {
+            return list.get((int) Math.floor((count) * PERCENT)) + "";
+        } catch (Exception e) {
+            return "-";
+        }
     }
 
     @Override public String toString() {
