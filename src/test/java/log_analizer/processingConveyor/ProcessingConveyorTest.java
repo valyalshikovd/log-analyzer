@@ -18,7 +18,7 @@ public class ProcessingConveyorTest {
         ProcessingConveyor p = new ProcessingConveyor(new LogStringParserImpl(new ZoneDateParserImpl()));
         p.collectorComposer(CollectorFactory.getDefaultStatisticCollector());
         String suffix;
-        p.renderer(RendererFactory.getDefaultMarkdownRenderer());
+        p.renderer(RendererFactory.getDefaultMarkdownRenderer("src/main/resources/nginx_logs.txt", "17/May/2015:08:05:25 +0000", null ));
         suffix = ".md";
         FilterChain filterChain = new FilterChain();
         ZoneDateTimeParser parser = new ZoneDateParserImpl();
@@ -33,6 +33,9 @@ public class ProcessingConveyorTest {
                 ## Общая информация \s
                 |        Метрика        |     Значение |
                 |:---------------------:|-------------:|
+                |Файл:|src/main/resources/nginx_logs.txt|
+                |Дата начала:|17/May/2015:08:05:25 +0000|
+                |Дата конца:|-|
                 |  Количество запросов  |       51408 |
                 | Средний размер ответа |660201.9500000001b |
                 |  95p размера ответа |200b |
@@ -75,7 +78,7 @@ public class ProcessingConveyorTest {
         ProcessingConveyor p = new ProcessingConveyor(new LogStringParserImpl(new ZoneDateParserImpl()));
         p.collectorComposer(CollectorFactory.getDefaultStatisticCollector());
         String suffix;
-        p.renderer(RendererFactory.getDefaultAdocRenderer());
+        p.renderer(RendererFactory.getDefaultAdocRenderer("src/main/resources/nginx_logs.txt", "30/May/2015:08:05:25 +0000", null ));
         suffix = ".md";
         FilterChain filterChain = new FilterChain();
         ZoneDateTimeParser parser = new ZoneDateParserImpl();
@@ -90,6 +93,9 @@ public class ProcessingConveyorTest {
                 == Общая информация\s\s
                 |===
                 |        Метрика        |     Значение
+                |Файл:|src/main/resources/nginx_logs.txt
+                |Дата начала:|30/May/2015:08:05:25 +0000
+                |Дата конца:|-
                 |  Количество запросов  |       14152\s
                 | Средний размер ответа |615723.01b\s
                 |  95p размера ответа |304b\s

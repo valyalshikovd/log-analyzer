@@ -38,7 +38,6 @@ public class LogStringParserImpl implements LogStringParser {
             if (logStringEntities.length < STRING_LENGTH) {
                 throw new IllegalArgumentException("Wrong size of log string");
             }
-
             return LogString
                 .builder()
                 .remoteAddr(logStringEntities[REMOTE_ADDRESS_INDEX])

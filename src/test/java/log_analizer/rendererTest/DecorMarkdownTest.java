@@ -8,12 +8,15 @@ class DecorMarkdownTest {
     @Test
     void renderHeader() {
         assertEquals("|        Метрика        |     Значение |\n" +
-            "|:---------------------:|-------------:|\n", new DecorMarkdown().getHeader());
+            "|:---------------------:|-------------:|\n" +
+            "|Файл:|file|\n" +
+            "|Дата начала:|someting date|\n" +
+            "|Дата конца:|someting date|\n", new DecorMarkdown("file", "someting date", "someting date").getHeader());
     }
 
 
     @Test
     void renderFooter() {
-        assertEquals("\n", new DecorMarkdown().getFooter());
+        assertEquals("\n", new DecorMarkdown("file", "someting date", "someting date").getFooter());
     }
 }

@@ -22,8 +22,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RendererFactory {
 
-    public static Renderer getDefaultMarkdownRenderer() {
-        Renderer renderer = new RendererImpl(new DecorMarkdown());
+    public static Renderer getDefaultMarkdownRenderer(String fileName, String start, String end) {
+        Renderer renderer = new RendererImpl(new DecorMarkdown(fileName, start, end));
         renderer.addRenderSegment(
             new CountRendererSegment("Количество запросов")
         );
@@ -49,8 +49,8 @@ public class RendererFactory {
         return renderer;
     }
 
-    public static Renderer getDefaultAdocRenderer() {
-        Renderer renderer = new RendererImpl(new DecorAdoc());
+    public static Renderer getDefaultAdocRenderer(String fileName, String start, String end) {
+        Renderer renderer = new RendererImpl(new DecorAdoc(fileName, start, end));
         renderer.addRenderSegment(
             new CountRendererSegmentAdoc("Количество запросов")
         );

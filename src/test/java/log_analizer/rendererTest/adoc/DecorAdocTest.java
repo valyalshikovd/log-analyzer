@@ -9,12 +9,15 @@ class DecorAdocTest {
     @Test
     void renderHeader() {
         assertEquals("|===\n" +
-            "|        Метрика        |     Значение\n", new DecorAdoc().getHeader());
+            "|        Метрика        |     Значение\n" +
+            "|Файл:|file\n" +
+            "|Дата начала:|someting date\n" +
+            "|Дата конца:|someting date\n", new DecorAdoc("file", "someting date", "someting date").getHeader());
     }
 
 
     @Test
     void renderFooter() {
-        assertEquals("|===\n", new DecorAdoc().getFooter());
+        assertEquals("|===\n", new DecorAdoc("file", "someting date", "someting date").getFooter());
     }
 }

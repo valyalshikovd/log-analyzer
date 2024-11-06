@@ -51,10 +51,10 @@ public class Reader {
             String suffix;
 
             if ("adoc".equals(args.format())) {
-                p.renderer(RendererFactory.getDefaultAdocRenderer());
+                p.renderer(RendererFactory.getDefaultAdocRenderer(args.path(), args.from(), args.to()));
                 suffix = ".adoc";
             } else {
-                p.renderer(RendererFactory.getDefaultMarkdownRenderer());
+                p.renderer(RendererFactory.getDefaultMarkdownRenderer(args.path(), args.from(), args.to()));
                 suffix = ".md";
             }
 
@@ -85,7 +85,6 @@ public class Reader {
             }
             p.filterChain(filterChain);
             p.process(args.path(), args.savePath() + suffix);
-
         } catch (DateTimeException e) {
             System.err.println("Не правильный формат даты: " + e.getMessage());
         } catch (Exception e) {

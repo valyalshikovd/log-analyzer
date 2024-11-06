@@ -46,7 +46,6 @@ public class ProcessingConveyor {
         LogStringParser logStringParser
     ) {
         this.filterChain =  new FilterChain();
-        this.renderer = RendererFactory.getDefaultMarkdownRenderer();
         this.collectorComposer = CollectorFactory.getDefaultStatisticCollector();
         this.logStringParser = logStringParser;
     }
