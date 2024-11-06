@@ -17,9 +17,10 @@ public class DecorMarkdown implements Decor {
     @Override
     public String getHeader() {
 
-        String fileNameString = "|Файл:|" + fileName + "|\n";
-        String startDateString = "|Дата начала:|" + startDate + "|\n";
-        String endDateString = "|Дата конца:|" + endDate + "|\n";
+        String endingChar = "|\n";
+        String fileNameString = "|Файл:|" + fileName + endingChar;
+        String startDateString = "|Дата начала:|" + startDate + endingChar;
+        String endDateString = "|Дата конца:|" + endDate + endingChar;
 
         return """
                 |        Метрика        |     Значение |

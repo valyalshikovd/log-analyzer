@@ -6,7 +6,6 @@ import backend.academy.log_analizer.fileWriter.FileWriterDefault;
 import backend.academy.log_analizer.filter.FilterChain;
 import backend.academy.log_analizer.parser.LogStringParser;
 import backend.academy.log_analizer.rendereSegment.Renderer;
-import backend.academy.log_analizer.rendereSegment.RendererFactory;
 import backend.academy.log_analizer.statisticCollector.StatisticCollectorComposer;
 import backend.academy.log_analizer.statisticCollector.collector.CollectorFactory;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
