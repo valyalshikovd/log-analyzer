@@ -7,7 +7,9 @@ import backend.academy.log_analizer.guice.ObjectFabric;
 import backend.academy.log_analizer.statisticCollector.collector.FrequentResourcesCollector;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FrequentResourcesCollectorTest {
@@ -54,7 +56,14 @@ public class FrequentResourcesCollectorTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
-        assertEquals("\"GET /downloads/product_2 HTTP/1.1\": 10\n\"GET /downloads/product_1 HTTP/1.1\": 7\n", collector.getStatistics());
+        Object o = collector.supplier().get();
+
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
+
+        assertEquals("\"GET /downloads/product_2 HTTP/1.1\": 10\n\"GET /downloads/product_1 HTTP/1.1\": 7\n", collector.finisher().apply(o));
     }
 }

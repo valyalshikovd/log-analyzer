@@ -1,9 +1,12 @@
 package backend.academy.log_analizer.statisticCollector.collector;
 
 import backend.academy.log_analizer.LogString;
-import backend.academy.log_analizer.statisticCollector.StatisticCollector;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
-public class AverageResponseSizeCollector implements StatisticCollector {
+@SuppressWarnings({"LambdaParameterName", "IllegalIdentifierName"})
+public class AverageResponseSizeCollector extends AbstractCollector {
 
     private int count = 0;
     private long amount = 0;
@@ -13,20 +16,33 @@ public class AverageResponseSizeCollector implements StatisticCollector {
         this.id = id;
     }
 
-    @Override
-    public void collectStatistics(LogString logString) {
-        count += 1;
-        amount += logString.bodyBytesSent();
-    }
-
-    @Override
-    public String getStatistics() {
-        final int ROUNDED_VAL1 = 100;
-        final double ROUNDED_VAL2 = 0.01;
-        return Math.round((ROUNDED_VAL1 * (double) amount / count)) * ROUNDED_VAL2 + "";
-    }
-
     @Override public String toString() {
         return id;
     }
+
+    @Override
+    public Supplier<Object> supplier() {
+        return () -> {
+            return null;
+        };
+    }
+
+    @Override
+    public BiConsumer<Object, LogString> accumulator() {
+        return (_, logString) -> {
+            count++;
+            amount += logString.bodyBytesSent();
+        };
+    }
+
+    @Override
+    public Function<Object, String> finisher() {
+        final int ROUNDED_VAL1 = 100;
+        final double ROUNDED_VAL2 = 0.01;
+
+        return (_) -> {
+            return Math.round((ROUNDED_VAL1 * (double) amount / count)) * ROUNDED_VAL2 + "";
+        };
+    }
+
 }

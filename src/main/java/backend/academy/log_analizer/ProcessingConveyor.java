@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 import lombok.Setter;
 
 @Setter
@@ -51,28 +52,29 @@ public class ProcessingConveyor {
 
     public void process(String pathString, String resPath) {
 
+        Map<String, String> res = null;
         try {
             if (pathString.startsWith("http://") || pathString.startsWith("https://")) {
                 URL url = new URL(pathString);
                 try (BufferedReader in = new BufferedReader(
                     new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)
                 )) {
-                    in.lines()
+                    res = in.lines()
                         .map(logStringParser::parseLogString)
                         .filter(filterChain::checkFilters)
-                        .forEach(collectorComposer::collect);
+                        .collect(collectorComposer);
                 }
             } else {
                 Path filePath = Paths.get(pathString);
-                Files.lines(filePath).map(logStringParser::parseLogString)
+                res = Files.lines(filePath).map(logStringParser::parseLogString)
                     .filter(filterChain::checkFilters)
-                    .forEach(collectorComposer::collect);
+                    .collect(collectorComposer);
             }
         } catch (IOException e) {
             throw new FailToReadException(e.getMessage());
         }
 
-        fileWriter.writeFile(resPath, renderer.render(collectorComposer.getStatistics()));
+        fileWriter.writeFile(resPath, renderer.render(res));
     }
 
 }

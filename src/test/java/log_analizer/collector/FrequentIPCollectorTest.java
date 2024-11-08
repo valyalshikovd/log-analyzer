@@ -4,7 +4,6 @@ import backend.academy.log_analizer.LogString;
 import backend.academy.log_analizer.guice.ObjectFabric;
 import backend.academy.log_analizer.parser.LogStringParser;
 import backend.academy.log_analizer.parser.LogStringParserImpl;
-import backend.academy.log_analizer.statisticCollector.collector.CountCollector;
 import backend.academy.log_analizer.statisticCollector.collector.FrequentIPCollector;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -38,7 +37,13 @@ public class FrequentIPCollectorTest {
         logs.add(logStringParser.parseLogString("80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
 
-        logs.forEach(countCollector::collectStatistics);
+        Object o = countCollector.supplier();
+
+        logs.forEach(
+            (logString) -> {
+                countCollector.accumulator().accept(o, logString);
+            }
+        );
 
 
         assertEquals("""
@@ -47,7 +52,7 @@ public class FrequentIPCollectorTest {
             80.91.33.133 : 2
             2.75.167.106 : 1
             93.180.71.3 : 1
-            """, countCollector.getStatistics());
+            """, countCollector.finisher().apply(o));
 
     }
 }

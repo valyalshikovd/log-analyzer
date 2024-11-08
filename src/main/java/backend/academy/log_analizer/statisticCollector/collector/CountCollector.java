@@ -1,9 +1,12 @@
 package backend.academy.log_analizer.statisticCollector.collector;
 
 import backend.academy.log_analizer.LogString;
-import backend.academy.log_analizer.statisticCollector.StatisticCollector;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
-public class CountCollector implements StatisticCollector {
+@SuppressWarnings({"LambdaParameterName", "IllegalIdentifierName"})
+public class CountCollector extends AbstractCollector {
 
     private int count = 0;
     private final String id;
@@ -12,17 +15,28 @@ public class CountCollector implements StatisticCollector {
         this.id = id;
     }
 
-    @Override
-    public void collectStatistics(LogString logString) {
-        count += 1;
-    }
-
-    @Override
-    public String getStatistics() {
-        return count + "";
-    }
 
     @Override public String toString() {
         return id;
     }
+
+    @Override
+    public Supplier<Object> supplier() {
+        return () -> null;
+    }
+
+    @Override
+    public BiConsumer<Object, LogString> accumulator() {
+        return (_, _) -> {
+            count++;
+        };
+    }
+
+    @Override
+    public Function<Object, String> finisher() {
+        return (_) -> {
+            return count + "";
+        };
+    }
+
 }

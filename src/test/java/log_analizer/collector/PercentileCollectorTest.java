@@ -56,8 +56,13 @@ public class PercentileCollectorTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
-        assertEquals("404", collector.getStatistics());
+        Object o = collector.supplier().get();
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
+        assertEquals("339", collector.finisher().apply(o));
     }
 
 }
