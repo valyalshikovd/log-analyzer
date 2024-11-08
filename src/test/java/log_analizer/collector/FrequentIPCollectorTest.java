@@ -37,7 +37,7 @@ public class FrequentIPCollectorTest {
         logs.add(logStringParser.parseLogString("80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
 
-        Object o = countCollector.supplier();
+        Object o = countCollector.supplier().get();
 
         logs.forEach(
             (logString) -> {

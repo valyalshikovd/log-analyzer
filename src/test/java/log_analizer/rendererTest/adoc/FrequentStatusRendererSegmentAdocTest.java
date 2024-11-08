@@ -55,7 +55,13 @@ class FrequentStatusRendererSegmentAdocTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
+        Object o = collector.supplier().get();
+
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
 
         assertEquals("""
             == Наиболее частые коды ответов
@@ -64,7 +70,7 @@ class FrequentStatusRendererSegmentAdocTest {
             |404|9 |
             |304|8 |
             |===
-            """, new FrequentStatusRendererSegmentAdoc("s").render(collector.getStatistics()));
+            """, new FrequentStatusRendererSegmentAdoc("s").render(collector.finisher().apply(o)));
     }
 
 }

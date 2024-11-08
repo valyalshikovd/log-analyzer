@@ -56,7 +56,13 @@ class FrequentIPRendererSegmentAdocTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
+        Object o = collector.supplier().get();
+
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
         assertEquals(
             """
                 == Наиболее частые клиенты
@@ -66,7 +72,7 @@ class FrequentIPRendererSegmentAdocTest {
                 |31.22.86.126 | 2 |
                 |80.91.33.133 | 2 |
                 |===
-                """, new FrequentIPRendererSegmentAdoc("r").render(collector.getStatistics())
+                """, new FrequentIPRendererSegmentAdoc("r").render(collector.finisher().apply(o))
         );
 
     }

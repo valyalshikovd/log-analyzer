@@ -54,7 +54,13 @@ class FrequentIPRendererSegmentTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
+        Object o = collector.supplier().get();
+
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
         assertEquals(
             """
                 ## Наиболее частые клиенты:
@@ -63,7 +69,7 @@ class FrequentIPRendererSegmentTest {
                 |83.161.14.106 | 3 |
                 |31.22.86.126 | 2 |
                 |80.91.33.133 | 2 |
-                """, new FrequentIPRendererSegment("r").render(collector.getStatistics())
+                """, new FrequentIPRendererSegment("r").render(collector.finisher().apply(o))
         );
 
     }

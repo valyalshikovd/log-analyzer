@@ -56,10 +56,14 @@ class FrequentResourcesRendererSegmentTest {
         logs.add(logStringParser.parseLogString(
             "80.91.33.133 - - [17/May/2015:12:05:38 +0000] \"GET /downloads/product_1 HTTP/1.1\" 404 338 \"-\" \"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\""));
 
-        logs.forEach(collector::collectStatistics);
+        Object o = collector.supplier().get();
 
+        logs.forEach(
+            (log) -> {
+                collector.accumulator().accept(o, log);
+            }
+        );
         FrequentStatusRendererSegment r = new FrequentStatusRendererSegment("s");
-        r.render(collector.getStatistics());
 
         assertEquals(
             """
@@ -68,7 +72,7 @@ class FrequentResourcesRendererSegmentTest {
            |:---------------------:|-------------:|
            |"GET /downloads/product_2 HTTP/1.1"| 10 |
            |"GET /downloads/product_1 HTTP/1.1"| 7 |
-           """, r.render(collector.getStatistics())
+           """, r.render(collector.finisher().apply(o))
         );
     }
 }
