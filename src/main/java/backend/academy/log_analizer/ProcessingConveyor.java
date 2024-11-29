@@ -66,9 +66,11 @@ public class ProcessingConveyor {
                 }
             } else {
                 Path filePath = Paths.get(pathString);
-                res = Files.lines(filePath).map(logStringParser::parseLogString)
-                    .filter(filterChain::checkFilters)
-                    .collect(collectorComposer);
+                try (var lines = Files.lines(filePath)) {
+                    res = lines.map(logStringParser::parseLogString)
+                        .filter(filterChain::checkFilters)
+                        .collect(collectorComposer);
+                }
             }
         } catch (IOException e) {
             throw new FailToReadException(e.getMessage());
