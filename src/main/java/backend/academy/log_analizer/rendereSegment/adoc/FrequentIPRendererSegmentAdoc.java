@@ -5,8 +5,6 @@ import backend.academy.log_analizer.rendereSegment.RendererType;
 
 public class FrequentIPRendererSegmentAdoc extends BaseRendererSegment {
 
-
-
     public FrequentIPRendererSegmentAdoc(String id) {
         super(id, RendererType.TABLE);
     }
@@ -19,19 +17,23 @@ public class FrequentIPRendererSegmentAdoc extends BaseRendererSegment {
         String[] dataArr = data.split("\n");
         sb.append("== Наиболее частые клиенты\n");
 
-        sb.append(
-            """
-                |===
-                |        IP клиента         |   Количество |
-                """);
+        try {
+            sb.append(
+                """
+                    |===
+                    |        IP клиента         |   Количество |
+                    """);
 
-        for (String line : dataArr) {
-            String[] lineArr = line.split(":");
-            sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
-            sb.append('\n');
+            for (String line : dataArr) {
+                String[] lineArr = line.split(":");
+                sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
+                sb.append('\n');
+            }
+            sb.append("|===\n");
+
+        } catch (Exception e) {
+            sb.append('-');
         }
-        sb.append("|===\n");
-
         return sb.toString();
     }
 
