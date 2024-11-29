@@ -15,10 +15,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 import lombok.Setter;
 
 @Setter
@@ -65,11 +69,22 @@ public class ProcessingConveyor {
                         .collect(collectorComposer);
                 }
             } else {
-                Path filePath = Paths.get(pathString);
-                try (var lines = Files.lines(filePath)) {
-                    res = lines.map(logStringParser::parseLogString)
-                        .filter(filterChain::checkFilters)
-                        .collect(collectorComposer);
+
+                PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + pathString);
+
+                try (Stream<Path> files = Files.walk(Paths.get("."))) {
+                    List<Path> matchedFiles = files
+                        .filter(Files::isRegularFile)
+                        .filter(matcher::matches)
+                        .toList();
+
+                    for (Path file : matchedFiles) {
+                        try (var lines = Files.lines(file)) {
+                            res = lines.map(logStringParser::parseLogString)
+                                .filter(filterChain::checkFilters)
+                                .collect(collectorComposer);
+                        }
+                    }
                 }
             }
         } catch (IOException e) {
