@@ -26,7 +26,7 @@ public class ProcessingConveyorTest {
         p.filterChain(filterChain);
         MockWriter mw = new MockWriter();
         p.fileWriter(mw);
-        p.process("./src/main/resources/nginx_logs.txt", suffix);
+        p.process("src/main/resources/nginx_logs.txt", suffix);
 
         assertEquals(
             """
@@ -86,7 +86,7 @@ public class ProcessingConveyorTest {
         p.filterChain(filterChain);
         MockWriter mw = new MockWriter();
         p.fileWriter(mw);
-        p.process("./src/main/resources/nginx_logs.txt", suffix);
+        p.process("src/main/resources/nginx_logs.txt", suffix);
 
         assertEquals(
             """
