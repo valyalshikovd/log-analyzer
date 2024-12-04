@@ -17,7 +17,7 @@ public class FrequentStatusRendererSegment extends BaseRendererSegment {
         String[] dataArr = data.split("\n");
 
         sb.append("## Наиболее частые коды ответов\n");
-        try {
+
             sb.append(
                 """
                     |      Код ответа       |   Количество |
@@ -26,12 +26,16 @@ public class FrequentStatusRendererSegment extends BaseRendererSegment {
 
             for (String line : dataArr) {
                 String[] lineArr = line.split(":");
+
+                if (lineArr.length < 2) {
+                    sb.append('-');
+                    break;
+                }
+
                 sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
                 sb.append('\n');
             }
-        } catch (Exception e) {
-            sb.append('-');
-        }
+
 
         return sb.toString();
     }

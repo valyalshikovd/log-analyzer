@@ -17,23 +17,25 @@ public class FrequentIPRendererSegmentAdoc extends BaseRendererSegment {
         String[] dataArr = data.split("\n");
         sb.append("== Наиболее частые клиенты\n");
 
-        try {
-            sb.append(
-                """
-                    |===
-                    |        IP клиента         |   Количество |
-                    """);
+        sb.append(
+            """
+                |===
+                |        IP клиента         |   Количество |
+                """);
 
-            for (String line : dataArr) {
-                String[] lineArr = line.split(":");
-                sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
-                sb.append('\n');
+        for (String line : dataArr) {
+            String[] lineArr = line.split(":");
+
+            if (lineArr.length < 2) {
+                sb.append('-');
+                break;
             }
-            sb.append("|===\n");
 
-        } catch (Exception e) {
-            sb.append('-');
+            sb.append('|').append(lineArr[0]).append('|').append(lineArr[1]).append(" |");
+            sb.append('\n');
         }
+        sb.append("|===\n");
+
         return sb.toString();
     }
 
